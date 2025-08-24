@@ -1,0 +1,20 @@
+{
+  "name": "🌽 Corn Cat - Task Tracker",
+  "short_name": "Corn Cat",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/cat-head.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/cat-head.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
