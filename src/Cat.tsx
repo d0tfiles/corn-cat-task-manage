@@ -16,6 +16,10 @@ interface CatProps {
 }
 
 export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunishmentPeriod, onClick }: CatProps) {
+  // Debug logging
+  if (isAnnoyed || isTearful || isOverjoyed) {
+    console.log('Cat emotion state:', { isOverjoyed, isTearful, isAnnoyed, reduceMotion })
+  }
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const popcornImgRef = useRef<HTMLImageElement | null>(null)
   const [popcornVisible, setPopcornVisible] = useState(false)
@@ -143,11 +147,13 @@ export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunis
           filter: isInPunishmentPeriod ? 'grayscale(50%)' : 'none'
         }}
 
-        className={
-          reduceMotion 
+        className={(() => {
+          const className = reduceMotion 
             ? '' // No animations when motion is reduced
             : isAnnoyed ? 'cat-annoyed' : isOverjoyed ? 'cat-overjoyed' : isTearful ? 'cat-tearful' : ''
-        }
+          if (className) console.log('Applying cat animation class:', className)
+          return className
+        })()}
       />
     </div>
   )
