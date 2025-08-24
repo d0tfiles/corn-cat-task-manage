@@ -108,3 +108,4 @@ interface SaveFile {
 ## License
 
 MIT License - feel free to use and modify as needed!
+# Updated for GitHub Pages deployment
