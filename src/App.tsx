@@ -23,6 +23,12 @@ const TASK_TYPES: { value: TaskType; label: string; icon: string }[] = [
   { value: 'other', label: 'Other', icon: '📝' },
 ]
 
+// Helper function to get the correct asset path
+const getAssetPath = (path: string) => {
+  const basePath = import.meta.env.BASE_URL || '/'
+  return `${basePath}${path.startsWith('/') ? path.slice(1) : path}`
+}
+
 export default function App() {
   const [state, setState] = useState<SaveFile | null>(null)
   const [newTask, setNewTask] = useState('')
@@ -53,12 +59,12 @@ export default function App() {
               setTheme(s.settings.theme as 'dark' | 'light')
             })
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(()=>{})
+      navigator.serviceWorker.register(getAssetPath('sw.js')).catch(()=>{})
     }
     
                 // Create audio pool for better performance
             for (let i = 0; i < 5; i++) {
-              const audio = new Audio(`${import.meta.env.BASE_URL}pop.mp3`)
+              const audio = new Audio(getAssetPath('pop.mp3'))
               audio.volume = 0.3
               audio.load()
               audioPoolRef.current.push(audio)
@@ -66,15 +72,15 @@ export default function App() {
 
             
             // Preload other sound effects
-            angryMeowRef.current = new Audio(`${import.meta.env.BASE_URL}angry-meow.wav`)
+            angryMeowRef.current = new Audio(getAssetPath('angry-meow.wav'))
             angryMeowRef.current.volume = 0.4
             angryMeowRef.current.load()
             
-            sweetMeowRef.current = new Audio(`${import.meta.env.BASE_URL}sweet-kitty-meow.wav`)
+            sweetMeowRef.current = new Audio(getAssetPath('sweet-kitty-meow.wav'))
             sweetMeowRef.current.volume = 0.4
             sweetMeowRef.current.load()
             
-            sparkleRef.current = new Audio(`${import.meta.env.BASE_URL}twinkle-sparkle-sfx.mp3`)
+            sparkleRef.current = new Audio(getAssetPath('twinkle-sparkle-sfx.mp3'))
             sparkleRef.current.volume = 0.5
             sparkleRef.current.load()
             
@@ -322,12 +328,12 @@ export default function App() {
           </button>
           <h1 style={{margin:0, fontSize:28, display:'flex', alignItems:'center', gap:'12px'}}>
             Corn Cat
-            <img src={`${import.meta.env.BASE_URL}cat-head.png`} alt="Cat Head" className="header-cat-icon" />
+            <img src={getAssetPath('cat-head.png')} alt="Cat Head" className="header-cat-icon" />
           </h1>
         </div>
         <div className="toolbar">
           <button onClick={() => setShowAchievements(true)} className="achievements-button">
-            <img src={`${import.meta.env.BASE_URL}cat-trophy.png`} alt="Trophy" className="button-icon" />
+            <img src={getAssetPath('cat-trophy.png')} alt="Trophy" className="button-icon" />
             <span>Achievements</span>
           </button>
           <button onClick={toggleTheme} className="theme-toggle-button" title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
@@ -540,7 +546,7 @@ export default function App() {
         <div className="achievement-notification">
           <div className="achievement-content">
             <div className="achievement-header">
-              <img src={`${import.meta.env.BASE_URL}cat-trophy.png`} alt="Trophy" className="achievement-trophy" />
+              <img src={getAssetPath('cat-trophy.png')} alt="Trophy" className="achievement-trophy" />
               <span className="achievement-title">Achievement Unlocked!</span>
             </div>
             <div className="achievement-body">

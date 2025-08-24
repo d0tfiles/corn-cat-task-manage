@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react'
 import type { Achievement, AchievementCategory } from './types'
 import { getAchievementsByCategory, getUnlockedAchievements, getLockedAchievements } from './achievements'
 
+// Helper function to get the correct asset path
+const getAssetPath = (path: string) => {
+  const basePath = import.meta.env.BASE_URL || '/'
+  return `${basePath}${path.startsWith('/') ? path.slice(1) : path}`
+}
+
 interface AchievementsProps {
   achievements: Achievement[]
   onClose: () => void
@@ -48,7 +54,7 @@ export function Achievements({ achievements, onClose }: AchievementsProps) {
       <div className="achievements-content">
         <div className="achievements-header">
           <h2>
-            <img src={`${import.meta.env.BASE_URL}cat-trophy.png`} alt="Trophy" className="achievement-header-icon" />
+            <img src={getAssetPath('cat-trophy.png')} alt="Trophy" className="achievement-header-icon" />
             Achievements
           </h2>
           <button onClick={onClose} className="close-button">×</button>

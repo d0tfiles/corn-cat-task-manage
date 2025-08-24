@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react'
 
+// Helper function to get the correct asset path
+const getAssetPath = (path: string) => {
+  const basePath = import.meta.env.BASE_URL || '/'
+  return `${basePath}${path.startsWith('/') ? path.slice(1) : path}`
+}
+
 interface CatProps {
   isOverjoyed: boolean
   isTearful: boolean
@@ -20,19 +26,18 @@ export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunis
     popcornImgRef.current = new Image()
     popcornImgRef.current.onload = () => {}
     popcornImgRef.current.onerror = () => {}
-    popcornImgRef.current.src = `${import.meta.env.BASE_URL}popcorn.png`
+    popcornImgRef.current.src = getAssetPath('popcorn.png')
   }, [])
 
 
 
   // Determine which cat image to show
   const getCatImage = () => {
-    const basePath = import.meta.env.BASE_URL
-    if (isAnnoyed) return `${basePath}cat-annoyed.png`
-    if (isTearful) return `${basePath}cat-tearful.png`
-    if (isOverjoyed) return `${basePath}cat-overjoyed.png`
+    if (isAnnoyed) return getAssetPath('cat-annoyed.png')
+    if (isTearful) return getAssetPath('cat-tearful.png')
+    if (isOverjoyed) return getAssetPath('cat-overjoyed.png')
 
-    return `${basePath}cat.png`
+    return getAssetPath('cat.png')
   }
 
   // Handle cat click
@@ -133,7 +138,7 @@ export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunis
         height={400}
         onClick={handleCatClick}
         style={{ 
-          cursor: isInPunishmentPeriod ? 'not-allowed' : `url('${import.meta.env.BASE_URL}pointer.png'), pointer`,
+          cursor: isInPunishmentPeriod ? 'not-allowed' : `url('${getAssetPath('pointer.png')}'), pointer`,
           opacity: isInPunishmentPeriod ? 0.5 : 1,
           filter: isInPunishmentPeriod ? 'grayscale(50%)' : 'none'
         }}
