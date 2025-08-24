@@ -48,7 +48,7 @@ export function Achievements({ achievements, onClose }: AchievementsProps) {
       <div className="achievements-content">
         <div className="achievements-header">
           <h2>
-            <img src="/cat-trophy.png" alt="Trophy" className="achievement-header-icon" />
+            <img src={`${import.meta.env.BASE_URL}cat-trophy.png`} alt="Trophy" className="achievement-header-icon" />
             Achievements
           </h2>
           <button onClick={onClose} className="close-button">×</button>

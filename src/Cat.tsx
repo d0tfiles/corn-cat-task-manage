@@ -20,18 +20,19 @@ export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunis
     popcornImgRef.current = new Image()
     popcornImgRef.current.onload = () => {}
     popcornImgRef.current.onerror = () => {}
-    popcornImgRef.current.src = '/popcorn.png'
+    popcornImgRef.current.src = `${import.meta.env.BASE_URL}popcorn.png`
   }, [])
 
 
 
   // Determine which cat image to show
   const getCatImage = () => {
-    if (isAnnoyed) return '/cat-annoyed.png'
-    if (isTearful) return '/cat-tearful.png'
-    if (isOverjoyed) return '/cat-overjoyed.png'
+    const basePath = import.meta.env.BASE_URL
+    if (isAnnoyed) return `${basePath}cat-annoyed.png`
+    if (isTearful) return `${basePath}cat-tearful.png`
+    if (isOverjoyed) return `${basePath}cat-overjoyed.png`
 
-    return '/cat.png'
+    return `${basePath}cat.png`
   }
 
   // Handle cat click
@@ -132,7 +133,7 @@ export function Cat({ isOverjoyed, isTearful, isAnnoyed, reduceMotion, isInPunis
         height={400}
         onClick={handleCatClick}
         style={{ 
-          cursor: isInPunishmentPeriod ? 'not-allowed' : "url('/pointer.png'), pointer",
+          cursor: isInPunishmentPeriod ? 'not-allowed' : `url('${import.meta.env.BASE_URL}pointer.png'), pointer`,
           opacity: isInPunishmentPeriod ? 0.5 : 1,
           filter: isInPunishmentPeriod ? 'grayscale(50%)' : 'none'
         }}
