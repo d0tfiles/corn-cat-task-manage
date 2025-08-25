@@ -283,7 +283,6 @@ export default function App() {
     }
   }
 
-
   if (!state) return <div style={{padding:24}}>Loading…</div>
 
   return (
