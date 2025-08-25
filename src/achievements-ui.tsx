@@ -16,9 +16,9 @@ interface AchievementsProps {
 const categoryLabels: Record<AchievementCategory, string> = {
   tasks: '✅ Tasks',
   streaks: '🔥 Streaks',
-  variety: '🎯 Variety',
-  clicks: '🐱 Clicks',
-  procrastinator: '😅 Procrastinator'
+  variety: '🌀 Variety',
+  clicks: '🖱️ Clicks',
+  procrastinator: '😬 Procrastinator'
 }
 
 const categoryColors: Record<AchievementCategory, string> = {
