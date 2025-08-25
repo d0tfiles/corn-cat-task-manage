@@ -1,5 +1,3 @@
-
-
 .App {
   max-width: 940px;
   margin: 0 auto;
@@ -220,29 +218,6 @@ footer {
   flex-wrap: wrap;
 }
 
-footer button,
-.import-button {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #1e293b;
-  color: #e2e8f0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
-}
-
-footer button:hover,
-.import-button:hover {
-  background: #334155;
-  border-color: #475569;
-}
-
-.import-button {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
 
 /* Achievements Modal Styles */
 .achievements-modal {

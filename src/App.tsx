@@ -283,32 +283,6 @@ export default function App() {
     }
   }
 
-  function exportData() {
-    if (!state) return
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'corn-cat-save.json'
-    a.click()
-    URL.revokeObjectURL(url)
-  }
-
-  function importData(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(String(reader.result))
-        setState(parsed)
-        setReduceMotion(!!parsed?.settings?.reduceMotion)
-      } catch {
-        alert('Invalid file')
-      }
-    }
-    reader.readAsText(file)
-  }
 
   if (!state) return <div style={{padding:24}}>Loading…</div>
 
@@ -351,19 +325,6 @@ export default function App() {
                 setShowAbout(true)
                 setShowHamburgerMenu(false)
               }} className="menu-item">ℹ️ About</button>
-            </div>
-            <div className="menu-section">
-              <button onClick={exportData} className="menu-item">📤 Export Data</button>
-              <label className="menu-item">
-                <input type="file" accept="application/json" onChange={importData} style={{display:'none'}} id="importfile"/>
-                <span role="button" onClick={() => document.getElementById('importfile')?.click()} tabIndex={0}>📥 Import Data</span>
-              </label>
-              <button onClick={async () => {
-                if (confirm('This will clear all data. Are you sure?')) {
-                  await localforage.clear()
-                  window.location.reload()
-                }
-              }} className="menu-item danger">🗑️ Clear All Data</button>
             </div>
           </div>
         </div>
@@ -613,7 +574,6 @@ export default function App() {
                 <h3>Customization</h3>
                 <ul>
                   <li>Toggle "Reduce Motion/Sound" to minimize animations and sounds</li>
-                  <li>Export/import your data for backup and sharing</li>
                   <li>Your progress is automatically saved locally</li>
                 </ul>
               </div>

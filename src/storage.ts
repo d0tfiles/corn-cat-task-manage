@@ -1,5 +1,5 @@
 import localforage from 'localforage'
-import type { SaveFile, Task } from './types'
+import type { SaveFile, Task, TaskType } from './types'
 import { ACHIEVEMENTS } from './achievements'
 
 localforage.config({
@@ -27,21 +27,16 @@ const DEFAULT: SaveFile = {
 }
 
 // Helper function to categorize tasks based on text content
-function categorizeTask(text: string): string {
-  const lowerText = text.toLowerCase()
-  
-  if (lowerText.includes('work') || lowerText.includes('job') || lowerText.includes('office') || lowerText.includes('meeting')) return 'work'
-  if (lowerText.includes('health') || lowerText.includes('exercise') || lowerText.includes('gym') || lowerText.includes('workout') || lowerText.includes('doctor')) return 'health'
-  if (lowerText.includes('social') || lowerText.includes('friend') || lowerText.includes('party') || lowerText.includes('date') || lowerText.includes('family')) return 'social'
-  if (lowerText.includes('learn') || lowerText.includes('study') || lowerText.includes('read') || lowerText.includes('course') || lowerText.includes('class')) return 'learning'
-  if (lowerText.includes('hobby') || lowerText.includes('game') || lowerText.includes('craft') || lowerText.includes('music') || lowerText.includes('art')) return 'hobby'
-  if (lowerText.includes('chore') || lowerText.includes('clean') || lowerText.includes('laundry') || lowerText.includes('dishes') || lowerText.includes('grocery')) return 'chore'
-  if (lowerText.includes('finance') || lowerText.includes('money') || lowerText.includes('bill') || lowerText.includes('budget') || lowerText.includes('save')) return 'finance'
-  if (lowerText.includes('personal') || lowerText.includes('self') || lowerText.includes('meditation') || lowerText.includes('goal')) return 'personal'
-  if (lowerText.includes('creative') || lowerText.includes('write') || lowerText.includes('draw') || lowerText.includes('design') || lowerText.includes('paint')) return 'creative'
-  if (lowerText.includes('travel') || lowerText.includes('trip') || lowerText.includes('vacation') || lowerText.includes('flight')) return 'travel'
-  
-  return 'other'
+function categorizeTask(text: string): TaskType {
+  const lowerText = text.toLowerCase();
+  if (lowerText.includes('learn') || lowerText.includes('study') || lowerText.includes('read') || lowerText.includes('course') || lowerText.includes('class')) return 'learning';
+  if (lowerText.includes('hobby') || lowerText.includes('game') || lowerText.includes('craft') || lowerText.includes('music') || lowerText.includes('art')) return 'hobby';
+  if (lowerText.includes('chore') || lowerText.includes('clean') || lowerText.includes('laundry') || lowerText.includes('dishes') || lowerText.includes('grocery')) return 'chore';
+  if (lowerText.includes('finance') || lowerText.includes('money') || lowerText.includes('bill') || lowerText.includes('budget') || lowerText.includes('save')) return 'finance';
+  if (lowerText.includes('personal') || lowerText.includes('self') || lowerText.includes('meditation') || lowerText.includes('goal')) return 'personal';
+  if (lowerText.includes('creative') || lowerText.includes('write') || lowerText.includes('draw') || lowerText.includes('design') || lowerText.includes('paint')) return 'creative';
+  if (lowerText.includes('travel') || lowerText.includes('trip') || lowerText.includes('vacation') || lowerText.includes('flight')) return 'travel';
+  return 'other';
 }
 
 // Migrate old tasks to include taskType
@@ -67,7 +62,7 @@ export async function load(): Promise<SaveFile> {
       ...DEFAULT,
       ...data,
       tasks: migrateTasks(data.tasks || []),
-      creature: data.creature || data.cat || DEFAULT.creature,
+      creature: data.creature || DEFAULT.creature,
       achievements: data.achievements || DEFAULT.achievements,
       settings: data.settings || DEFAULT.settings
     }
