@@ -29,6 +29,42 @@ A delightful task management app featuring a corn-loving cat companion! Complete
 5. **Interact with Corn Cat**: Click on the cat to feed it corn and see popcorn animation! 🌽🍿
 6. **View Achievements**: Click the achievements button to see your progress
 
+## Task Categories
+
+- 💼 Work
+- 🏥 Health  
+- 👥 Social
+- 📚 Learning
+- 🎨 Hobby
+- 🧹 Chore
+- 💰 Finance
+- 🎯 Personal
+- 🎭 Creative
+- ✈️ Travel
+- 📝 Other
+
+## Development
+
+### Setup
+
+```bash
+npm install
+npm run dev
+```
+
+### Testing
+
+```bash
+npm test
+npm run test:ui
+npm run test:coverage
+```
+
+### Building
+
+```bash
+npm run build
+```
 
 ## Technical Details
 
@@ -37,6 +73,15 @@ A delightful task management app featuring a corn-loving cat companion! Complete
 - **Testing**: Vitest + React Testing Library
 - **Styling**: CSS with animations and responsive design
 - **PWA**: Progressive Web App with offline support
+
+## Cat Images
+
+The app expects the following PNG files in the `public` directory:
+- `cat.png` - Normal cat state
+- `cat-overjoyed.png` - Happy cat when tasks are completed
+- `cat-tearful.png` - Sad cat when completed tasks are deleted
+- `popcorn.png` - Popcorn that appears when clicking the cat
+- `pop.mp3` - Sound effect for task completion
 
 ## Data Structure
 
@@ -63,4 +108,4 @@ interface SaveFile {
 ## License
 
 MIT License - feel free to use and modify as needed!
-
+# Updated for GitHub Pages deployment
