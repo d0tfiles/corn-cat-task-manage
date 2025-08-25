@@ -253,7 +253,6 @@ export default function App() {
               // Only show emotion animation if motion is not reduced
               if (!reduceMotion) {
                 setCatEmotion('overjoyed')
-                console.log('Setting cat emotion to overjoyed')
                 // Reset emotion after animation
                 setTimeout(() => setCatEmotion('normal'), 2000)
               }
@@ -280,7 +279,6 @@ export default function App() {
     // Show tearful animation if deleting a completed task (only if motion is not reduced)
     if (wasCompleted && !reduceMotion) {
       setCatEmotion('tearful')
-      console.log('Setting cat emotion to tearful')
       setTimeout(() => setCatEmotion('normal'), 2000)
     }
   }
@@ -414,7 +412,6 @@ export default function App() {
                 // Show annoyed animation
                 if (!reduceMotion) {
                   setCatEmotion('annoyed')
-                  console.log('Setting cat emotion to annoyed')
                   setTimeout(() => setCatEmotion('normal'), 3000)
                 }
                 
